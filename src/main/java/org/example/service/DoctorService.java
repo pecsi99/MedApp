@@ -2,11 +2,12 @@ package org.example.service;
 
 import org.example.modell.Doctor;
 import org.example.modell.User;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Service
 public class DoctorService {
     private List<Doctor> doctors = new ArrayList<>(List.of(
             new Doctor(1, "Dr. Kovács", "Kardiológia", new ArrayList<>()),
@@ -27,9 +28,7 @@ public class DoctorService {
         doctors.add(doctor);
     }
 
-//    public Doctor getDoctorById(int id) {
-//        return doctors.stream().filter(d -> d.getId() == id).findFirst().orElse(null);
-//    }
+
 public Doctor findById(int id) {
     for (Doctor doctor : doctors) {
         if (doctor.getId() == id) {
@@ -37,6 +36,9 @@ public Doctor findById(int id) {
         }
     }
     return null;
+}
+public List<Doctor> findAll(){
+        return new ArrayList<>(doctors);
 }
 
     public boolean addPatientToDoctor(int doctorId, User user) {
@@ -53,6 +55,21 @@ public Doctor findById(int id) {
         Doctor doctor = findById(doctorId);
         return doctor != null ? doctor.getPatients() : null;
     }
+
+    public List<Doctor> sortByName() {
+        List<Doctor> sorted = new ArrayList<>(doctors);
+        sorted.sort((d1, d2) -> d1.getName().compareToIgnoreCase(d2.getName()));
+        return sorted;
     }
+
+    public List<Doctor> sortByDepartment() {
+        List<Doctor> sorted = new ArrayList<>(doctors);
+        sorted.sort((d1, d2) -> d1.getDepartment().compareToIgnoreCase(d2.getDepartment()));
+        return sorted;
+    }
+
+
+
+}
 
 
