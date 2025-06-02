@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Kórház - Főoldal</title>
+
+    <!-- Bootstrap CSS (modern, orvosi stílushoz passzol) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.3.1/dist/flatly/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .jumbotron {
+            background-color: #e9f7ff;
+            padding: 3rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .hospital-logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container text-center mt-5">
+    <div class="jumbotron">
+        <img src="https://cdn-icons-png.flaticon.com/512/1484/1484864.png" alt="Hospital Logo" class="hospital-logo">
+        <h1 class="display-4">Üdvözöljük az Online Kórházi Rendszerben</h1>
+        <p class="lead">Foglaljon időpontot orvosához egyszerűen és gyorsan!</p>
+        <hr class="my-4">
+        <p>Válasszon az alábbi lehetőségek közül:</p>
+        <a class="btn btn-primary btn-lg m-2" th:href="@{/doctors/list}" role="button">Orvosok listája</a>
+<!--        <a class="btn btn-success btn-lg m-2" th:href="@{/appointments/request}" role="button">Időpont foglalás</a>-->
+    </div>
+</div>
+
+</body>
+</html>
