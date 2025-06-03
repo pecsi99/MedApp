@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orvosok listája</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.3.1/dist/flatly/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+
+<h1 class="mb-4">Orvosok listája</h1>
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="sortButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Rendezés
+    </button>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sortButton">
+        <a class="dropdown-item" th:href="@{/doctors/list(sort='sortByNameAsc')}">Név (növekvő)</a>
+        <a class="dropdown-item" th:href="@{/doctors/list(sort='sortByNameDesc')}">Név (csökkenő)</a>
+        <a class="dropdown-item" th:href="@{/doctors/list(sort='sortByDepartment')}">Osztály szerint</a>
+    </div>
+</div>
+
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th>Azonosító</th>
+        <th>Név</th>
+        <th>Szakterület</th>
+        <th>Műveletek</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="doctor : ${doctors}">
+        <td th:text="${doctor.id}">1</td>
+        <td th:text="${doctor.name}">Dr. Példa</td>
+        <td th:text="${doctor.department}">Kardiológia</td>
+        <td>
+            <a th:href="@{'/appointments/request?doctorId=' + ${doctor.id}}" class="btn btn-primary btn-sm">Időpontkérés</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
