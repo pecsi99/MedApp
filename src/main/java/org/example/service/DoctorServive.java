@@ -17,4 +17,10 @@ public class DoctorServive {
     public List<Doctor> findAll(){
         return doctorRepository.findAll();
     }
+    public void delete(int id){
+        doctorRepository.deleteById(id);
+    }
+    public void addDoctor(Doctor doctor){
+        doctorRepository.save(doctor);
+    }
 }
