@@ -15,8 +15,11 @@ public class Doctor {
     private int id;
     private String name;
     private String department;
-    @OneToMany
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Appointment> appointments;
+
+//    @OneToMany
+//    private List<Appointment> appointments;
 
     public Doctor() {
     }

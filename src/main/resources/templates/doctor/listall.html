@@ -33,18 +33,23 @@
     <tbody>
     <tr th:each="doctor : ${doctors}">
         <td th:text="${doctor.id}">1</td>
-        <td th:text="${doctor.name}">Dr. Példa</td>
+        <td>
+            <a th:href="@{'/doctors/details/' + ${doctor.id}}" th:text="${doctor.name}">Név</a>
+        </td>
         <td th:text="${doctor.department}">Kardiológia</td>
         <td>
             <a th:href="@{'/doctors/delete/'+ ${doctor.id}}" class="btn btn-danger btnsm">Törlés</a>
         </td>
         <td>
-            <a th:href="@{'/appointments/request?doctorId=' + ${doctor.id}}" class="btn btn-primary btn-sm">Szerkesztés</a>
+            <a th:href="@{'/doctors/edit/' + ${doctor.id}}" class="btn btn-primary btn-sm">Szerkesztés</a>
+
         </td>
     </tr>
     </tbody>
 </table>
 <a class="btn btn-primary" href="/doctors/add">Orvosok hozzáadása</a>
+<a class="btn btn-primary" href="/patients/list">Betegek megtekintése</a>
+<a class="btn btn-primary" href="/appointment">Időpont foglalás</a>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 </body>

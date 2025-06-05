@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 @Entity
@@ -15,14 +17,15 @@ public class Appointment {
     private int id;
     @ManyToOne
     private Doctor doctor;
-    @ManyToOne
+    @ManyToOne(optional = true)
     private Patient patient;
-    private Date date;
+    @Column(name = "date_time")
+    private LocalDateTime date;
 
     public Appointment() {
     }
 
-    public Appointment(int id, Doctor doctor, Patient patient, Date date) {
+    public Appointment(int id, Doctor doctor, Patient patient, LocalDateTime date) {
         this.id = id;
         this.doctor = doctor;
         this.patient = patient;
@@ -33,18 +36,19 @@ public class Appointment {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Appointment that = (Appointment) o;
-        return Objects.equals(doctor, that.doctor) && Objects.equals(patient, that.patient) && Objects.equals(date, that.date);
+        return id == that.id && Objects.equals(doctor, that.doctor) && Objects.equals(patient, that.patient) && Objects.equals(date, that.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(doctor, patient, date);
+        return Objects.hash(id, doctor, patient, date);
     }
 
     @Override
     public String toString() {
         return "Appointment{" +
-                "doctor=" + doctor +
+                "id=" + id +
+                ", doctor=" + doctor +
                 ", patient=" + patient +
                 ", date=" + date +
                 '}';

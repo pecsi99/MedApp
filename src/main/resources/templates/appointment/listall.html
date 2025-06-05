@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Időpontok listája</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.3.1/dist/flatly/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+
+<h1 class="mb-4">Időpontok</h1>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th>Azonosító</th>
+        <th>Orvos neve</th>
+<!--        <th>Beteg neve</th>-->
+        <th>Időpont</th>
+        <th>Törlés</th>
+        <th>Lefoglalás</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="appointment : ${appointments}">
+        <td th:text="${appointment.id}">1</td>
+        <td th:text="${appointment.doctor.name}">Orvos neve</td>
+<!--        <td th:text="${appointment.patient.name}">Beteg neve</td>-->
+        <td th:text="${#temporals.format(appointment.date, 'yyyy-MM-dd HH:mm')}">2025-06-10 14:30</td>
+        <td>
+            <a th:href="@{'/appointment/delete/' + ${appointment.id}}" class="btn btn-danger btn-sm">Törlés</a>
+        </td>
+        <td>
+            <a th:href="@{'/appointment/booking/' + ${appointment.id}}" class="btn btn-danger btn-sm">Lefoglalás</a>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

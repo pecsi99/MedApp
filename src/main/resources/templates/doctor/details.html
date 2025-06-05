@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Orvos részletei</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.3.1/dist/flatly/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+
+<h1 class="text-center text-uppercase mb-4" th:text="${doctor.name}">Dr. Valaki</h1>
+<h4 class="text-center mb-4 text-secondary" th:text="${doctor.department}">Szakterület</h4>
+
+<h5 class="mb-3">Időpontok</h5>
+<table class="table table-bordered table-hover">
+  <thead>
+  <tr>
+    <th>Beteg neve</th>
+    <th>Időpont</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="appointment : ${doctor.appointments}" th:if="${appointment.patient != null}">
+    <td th:text="${appointment.patient != null ? appointment.patient.name : '–'}">Példa Béla</td>
+
+    <td th:text="${appointment.date}">2025-06-05 14:00</td>
+  </tr>
+  </tbody>
+</table>
+
+<a class="btn btn-secondary" th:href="@{/doctors/list}">Vissza</a>
+
+</body>
+</html>

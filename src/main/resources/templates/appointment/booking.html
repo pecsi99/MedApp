@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Időpont Foglalás</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.3.1/dist/flatly/bootstrap.min.css">
+</head>
+<body class="container d-flex flex-column justify-content-center align-items-center vh-100">
+
+<div class="text-center">
+  <h1 class="display-4 font-weight-bold mb-3" th:text="${appointment.doctor.name}">DR. ORVOS NEVE</h1>
+  <h3 class="mb-2 text-secondary" th:text="${appointment.doctor.department}">OSZTÁLY</h3>
+  <h4 class="mb-4" th:text="${#temporals.format(appointment.date, 'yyyy-MM-dd HH:mm')}">2025-06-10 14:30</h4>
+
+  <form th:action="@{'/appointment/book/' + ${appointment.id}}" method="post" class="w-50 mx-auto">
+    <div class="form-group">
+      <label for="patientId" class="font-weight-bold">Beteg azonosító</label>
+      <input type="number" class="form-control text-center" id="patientId" name="patientId" required placeholder="Írja be a beteg ID-ját">
+    </div>
+    <button type="submit" class="btn btn-danger btn-block btn-lg mt-3">LEFOGLALÁS</button>
+  </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
