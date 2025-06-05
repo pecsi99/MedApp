@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Időpontok listája</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.3.1/dist/flatly/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+
+<h1 class="mb-4">Szabad időpontok</h1>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th>Azonosító</th>
+        <th>Orvos neve</th>
+        <th>Szakterület</th>
+        <th>Időpont</th>
+        <th>Törlés</th>
+        <th>Lefoglalás</th>
+        <th>Szerkesztés</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="appointment : ${appointments}" th:if="${appointment.patient == null}">
+        <td th:text="${appointment.id}">1</td>
+        <td th:text="${appointment.doctor.name}">Orvos neve</td>
+        <td th:text="${appointment.doctor.department}">Szakterület</td>
+        <td th:text="${#temporals.format(appointment.date, 'yyyy-MM-dd HH:mm')}">2025-06-10 14:30</td>
+        <td>
+            <a th:href="@{'/appointment/delete/' + ${appointment.id}}" onclick="return confirm('Biztos törölni szeretnéd?');" class="btn btn-danger btn-sm">Törlés</a>
+        </td>
+        <td>
+            <a th:href="@{'/appointment/booking/' + ${appointment.id}}" class="btn btn-danger btn-sm">Lefoglalás</a>
+
+        </td>
+        <td>
+            <a th:href="@{'/appointment/edit/' + ${appointment.id}}" class="btn btn-primary btn-sm">Szerkesztés</a>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a class="btn btn-primary" href="/appointment/create">Időpont létrehozása</a>
+<a class="btn btn-primary" href="/patients/list">Betegek megtekintése</a>
+<a class="btn btn-primary" href="/doctors/list">Orvosok listája</a>
+</body>
+</html>

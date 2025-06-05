@@ -3,75 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Online Kórház - Főoldal</title>
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            text-align: center;
-        }
-
-        .jumbotron {
-            background-color: #e9f7ff;
-            padding: 3rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .hospital-logo {
-            width: 80px;
-            height: auto;
-            margin-bottom: 15px;
-        }
-
-        .display-4 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .lead {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .btn {
-            display: inline-block;
-            font-size: 1.1rem;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 0.3rem;
-            cursor: pointer;
-            text-decoration: none;
-            margin: 0.5rem;
-            color: white;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.3.1/dist/flatly/bootstrap.min.css">
 </head>
 <body>
 
 <div class="container">
     <div class="jumbotron">
-        <img src="https://cdn-icons-png.flaticon.com/512/1484/1484864.png" alt="Hospital Logo" class="hospital-logo">
+<!--        <img src="/images/img.png" alt="Saját kép" />-->
+
         <h1 class="display-4">Üdvözöljük az Online Kórházi Rendszerben</h1>
         <p class="lead">Foglaljon időpontot orvosához egyszerűen és gyorsan!</p>
         <hr class="my-4">
         <p>Válasszon az alábbi lehetőségek közül:</p>
         <a class="btn btn-primary" href="/doctors/list">Orvosok listája</a>
-        <!-- <a class="btn btn-success" href="/appointments/request">Időpont foglalás</a> -->
+        <a class="btn btn-primary" href="/patients/list">Betegek megtekintése</a>
+        <a class="btn btn-success" href="/appointment">Időpont foglalás</a>
     </div>
 </div>
 

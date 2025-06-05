@@ -5,12 +5,11 @@
     <title>Title</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-
 </head>
 <body>
 <div class="container">
-  <h1>Orvos létrehozása</h1>
-<form th:action="@{/doctors/add}" th:object="${doctor}" method="post">
+  <h1>Beteg létrehozása/szerkesztése</h1>
+<form th:action="@{/patients/add}" th:object="${patient}" method="post">
     <input type="hidden" th:field="*{id}" />
 
     <div class="form-group">
@@ -18,10 +17,6 @@
         <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Írd be a nevet" required />
     </div>
 
-    <div class="form-group">
-        <label for="department">Szakterület</label>
-        <input type="text" th:field="*{department}" class="form-control" id="department" placeholder="Osztály neve" required />
-    </div>
 
     <button type="submit" class="btn btn-success">Mentés</button>
 </form>
