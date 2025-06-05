@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Betegek</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.3.1/dist/flatly/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+
+<h1 class="mb-4">Betegek</h1>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="sortButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Rendezés
+  </button>
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sortButton">
+    <a class="dropdown-item" th:href="@{/patients/list(sort='sortByNameAsc')}">Név (növekvő)</a>
+    <a class="dropdown-item" th:href="@{/patients/list(sort='sortByNameDesc')}">Név (csökkenő)</a>
+  </div>
+</div>
+
+
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
+  <tr>
+    <th>Azonosító</th>
+    <th>Név</th>
+    <th>Törlés</th>
+    <th>Szerkesztés</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="patient : ${patients}">
+    <td th:text="${patient.id}">1</td>
+    <td>
+    <a th:href="@{'/patients/details/' + ${patient.id}}" th:text="${patient.name}">Név</a>
+    </td>
+    <td>
+      <a th:href="@{'/patients/delete/'+ ${patient.id}}" class="btn btn-danger btnsm">Törlés</a>
+    </td>
+    <td>
+      <a th:href="@{'/patients/edit/' + ${patient.id}}" class="btn btn-primary btn-sm">Szerkesztés</a>
+
+    </td>
+  </tr>
+  </tbody>
+</table>
+<a class="btn btn-primary" href="/patients/add">Betegek hozzáadása</a>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
