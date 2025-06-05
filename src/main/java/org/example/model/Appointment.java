@@ -1,52 +1,73 @@
 package org.example.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Column;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
+
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
     private Doctor doctor;
-    @ManyToOne
+    @ManyToOne(optional = true)
     private Patient patient;
-    private Date date;
+    @Column(name = "date_time")
+    private LocalDateTime date;
 
-    public Appointment() {
-    }
-
-    public Appointment(int id, Doctor doctor, Patient patient, Date date) {
-        this.id = id;
-        this.doctor = doctor;
-        this.patient = patient;
-        this.date = date;
-    }
+//    public Appointment() {
+//    }
+//
+//    public Appointment(int id,
+//                       Doctor doctor,
+//                       Patient patient,
+//                       LocalDateTime date) {
+//        this.id = id;
+//        this.doctor = doctor;
+//        this.patient = patient;
+//        this.date = date;
+//    }
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Appointment that = (Appointment) o;
-        return Objects.equals(doctor, that.doctor) && Objects.equals(patient, that.patient) && Objects.equals(date, that.date);
+        return id == that.id
+                && Objects.equals(doctor, that.doctor)
+                && Objects.equals(patient, that.patient)
+                && Objects.equals(date, that.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(doctor, patient, date);
+
+        return Objects.hash(id, doctor, patient, date);
     }
 
     @Override
     public String toString() {
-        return "Appointment{" +
-                "doctor=" + doctor +
-                ", patient=" + patient +
-                ", date=" + date +
-                '}';
+        return "Appointment{"
+                + "id=" + id
+                + ", doctor=" + doctor
+                + ", patient=" + patient
+                + ", date=" + date
+                + '}';
     }
 }
